@@ -1,3 +1,4 @@
+import $ from 'jquery';
 let plural_exceptions = [
     "urM"
 ]
