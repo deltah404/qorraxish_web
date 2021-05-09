@@ -1,8 +1,6 @@
-import $ from 'jquery';
 let plural_exceptions = [
     "urM"
 ]
-
 
 function translate(text, destination) {
     let out = document.getElementById(destination);
