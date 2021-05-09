@@ -87,6 +87,5 @@ function english(text, destination) {
 
 let c = 0;
 $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function (data) {
-    Object.keys(data).forEach(w => {c++;});
+    Object.keys(data).forEach(w => {c++;document.getElementById('count').innerHTML = c+' words'});
 });
-setInterval(function() {document.getElementById('count').innerHTML = c+' words'}, 1);
