@@ -2,10 +2,10 @@ let plural_exceptions = [
     "urM"
 ]
 
-function translate(text, destination) {
+function qorraxish(text, destination) {
     let out = document.getElementById(destination);
     if (text == '') {return out.innerHTML = '-'}
-    $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function (data) {
+    $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function(data) {
         let dictionary = data;
         console.log(dictionary);
         console.log(Object.keys(dictionary));
@@ -47,12 +47,12 @@ function swap(json){
     return ret;
 }
 
-function toEnglish(text, destination) {
+function english(text, destination) {
     let out = document.getElementById(destination);
-    if (text == '') {return out.innerHTML = '-'}
-    $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function (data) {
+    if (text == '') {return out.innerHTML = '-'};
+    $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function(data) {
         let dictionary = data;
-        dictionary = swap(dictionary);
+        let rdictionary = swap(dictionary);
         console.log(dictionary);
         console.log(Object.keys(dictionary));
 
@@ -63,15 +63,15 @@ function toEnglish(text, destination) {
             let result = '';
             function analyseWord(word) {
                 if (!plural_exceptions.includes(word)) {lword = word.toLowerCase();} else {lword = word};
-                if (Object.keys(dictionary).includes(lword)) {
+                if (Object.keys(rdictionary).includes(lword)) {
                     let iter = -1;
                     let found;
-                    Object.keys(dictionary).forEach(key => {
+                    Object.keys(rdictionary).forEach(key => {
                         iter ++;
                         if (key == lword) {found = iter};
                     });
                     console.log(found);
-                    result += dictionary[Object.keys(dictionary)[found]] + ' ';
+                    result += rdictionary[Object.keys(rdictionary)[found]] + ' ';
                 } else {
                     result += '[' + lword + '] ';
                 }
