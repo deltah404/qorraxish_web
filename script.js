@@ -4,7 +4,8 @@ let plural_exceptions = [
 
 function qorraxish(text, destination) {
     let out = document.getElementById(destination);
-    if (text == '') {return out.innerHTML = '-'}
+    if (text == '') {return out.innerHTML = '-'};
+    if (text.endsWith(' ')) {text = text.slice(0, -1)};
     $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function(data) {
         let dictionary = data;
         console.log(dictionary);
