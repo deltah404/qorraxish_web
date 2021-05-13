@@ -1,19 +1,35 @@
+let CURRENCT_PACKAGE = 1;
+
 let plural_exceptions = [
-    "urM"
+    "urM",
+    "faeiusM"
 ]
 
+let ignored_punctuation = [
+    " ",
+    ""
+]
+
+let link = 'https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json'
 function qorraxish(text, destination) {
     let out = document.getElementById(destination);
     if (text == '') {return out.innerHTML = '-'};
-    if (text.endsWith(' ')) {text = text.slice(0, -1)};
-    $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function(data) {
+    while (text.endsWith(' ')) {text = text.slice(0, -1)};
+
+    console.log('Loading dictionary from '+link);
+    $.getJSON(link, function(data) {
+        console.log('Loaded dictionary');
         let dictionary = data;
-        console.log(dictionary);
-        console.log(Object.keys(dictionary));
 
         function toQorraxish(text, destination) {
             
             let words = text.split(" ");
+            let index = 0;
+            words.forEach(word => {
+                if (ignored_punctuation.includes(word)) {delete words[index]};
+                index ++;
+            })
+            words.forEach(word => {console.log(word)})
 
             let result = '';
             function analyseWord(word) {
@@ -51,7 +67,7 @@ function swap(json){
 function english(text, destination) {
     let out = document.getElementById(destination);
     if (text == '') {return out.innerHTML = '-'};
-    $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function(data) {
+    $.getJSON(link, function(data) {
         let dictionary = data;
         let rdictionary = swap(dictionary);
         console.log(dictionary);
@@ -63,7 +79,7 @@ function english(text, destination) {
 
             let result = '';
             function analyseWord(word) {
-                if (!plural_exceptions.includes(word)) {lword = word.toLowerCase();} else {lword = word};
+                if (! plural_exceptions.includes(word)) {lword = word.toLowerCase();} else {lword = word};
                 if (Object.keys(rdictionary).includes(lword)) {
                     let iter = -1;
                     let found;
@@ -88,5 +104,5 @@ function english(text, destination) {
 
 let c = 0;
 $.getJSON('https://raw.githubusercontent.com/deltah404/qorraxish/master/dictionary.json', function (data) {
-    Object.keys(data).forEach(w => {c++;document.getElementById('count').innerHTML = c+' words'});
+    Object.keys(data).forEach(w => {c++;document.getElementById('count').innerHTML = c+' words - package '+CURRENCT_PACKAGE});
 });
