@@ -41,3 +41,17 @@ input {
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.suggestionbox {
+    width: 75%;
+}
+
+.confbutton:hover {
+    animation: inflate 1s infinite;
+}
+
+@keyframes inflate {
+    0% { color: inherit; }
+    50% { color: lightgrey; }
+    100% { color: inherit; }
+}

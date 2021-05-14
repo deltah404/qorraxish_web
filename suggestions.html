@@ -18,11 +18,17 @@
                 <h1 class="head" style="text-align: center; margin: 3px;">Qorraxish Translator</h1>
             </div>
 
-            <div style="display: flex; align-items: center; justify-content: center;">
-                <input style="border-right: 0;" id="english" type="text" placeholder="English">
-                <input style="border-right: 0;" id="qorraxish" type="text" placeholder="Qorraxish">
-                <input type="submit" onclick="send(gv('english'), gv('qorraxish'))">
+            <div id="submitter" style="display: flex; align-items: center; justify-content: center; margin: 10px;">
+                <input class="suggestionbox" maxlength="15" style="border-right: 0;" id="english" type="text" placeholder="English">
+                <input class="suggestionbox" maxlength="15" style="border-right: 0;" id="qorraxish" type="text" placeholder="Qorraxish"><br>
+                <input type="button" onclick="send(gv('english'), gv('qorraxish'))" value="Submit" style="width: 20%; background-color: grey; color: white;">
             </div>
+
+            <div id="confirm" style="display: flex; justify-self: center; flex-direction: column;">
+                <p class="content" style="text-align: center; font-size: 1.6em;"><em>Please don't spam the system or request nonsense words. This feeds to a Discord server and excessive use may cause crashing or a ratelimiting error. Use this system responsibly.</em></p>
+                <button class="confbutton" id="confbutton" onclick="confirm()" style="padding: 10px; color: white; background-color: grey; border-radius: 20px; border: 0px;">Okay</button>
+            </div>
+
         </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
         <script src="/suggestions.js"></script>

@@ -1,3 +1,5 @@
+document.getElementById('submitter').style.visibility = 'collapse';
+
 function send(eng, qor) {
     var request = new XMLHttpRequest();
     request.open("POST", "https://discord.com/api/webhooks/842465256286453830/hKBl4zT36Dv4_X6I4V2ejOJFa2w5BABMWKz7YfLwM0gZz810Z1XbKc9S3i_g4Z2Gqjoi");
@@ -13,4 +15,9 @@ function send(eng, qor) {
 
 function gv(id) {
     return document.getElementById(id).value;
+}
+
+function confirm() {
+    document.getElementById('submitter').style.visibility = 'visible';
+    document.getElementById('confirm').remove();
 }
